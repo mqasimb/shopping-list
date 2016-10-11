@@ -1,11 +1,14 @@
 $(document).ready(function() {
-	$("#js-shopping-list-form button").attr("type","button").click(function() {
+	
+	$("#js-shopping-list-form").submit(function(event) {
+		event.preventDefault();
 		var inputval = $("#js-shopping-list-form input");
 		if(inputval.val()) {
 			$("ul.shopping-list").prepend(addItem(inputval.val()));
 			inputval.val("");
 		};
 	});
+
 	$("ul").on("click","button.shopping-item-toggle",function() {
 		$(this).parents(".shopping-item-controls").siblings(".shopping-item").toggleClass("shopping-item__checked");
 	});
@@ -19,7 +22,7 @@ function addItem(inputval) {
 		"</span><div class='shopping-item-controls'>"+
           "<button class='shopping-item-toggle'>"+
             "<span class='button-label'>check</span>"+
-          "</button><button class='shopping-item-delete'>"+
+          "</button>&nbsp;<button class='shopping-item-delete'>"+
             "<span class='button-label'>delete</span>"+
           "</button></div></li>"
 };
